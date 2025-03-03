@@ -1,5 +1,6 @@
 const express=require('express');
 const mongoose = require('mongoose');
+const cors= require('cors');
 const app=express()
 const tmdbApi=require('./controllers/tmdbApi')
 require('dotenv').config()
