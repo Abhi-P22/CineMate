@@ -11,7 +11,7 @@ const UserApi = (token) => {
         if(token){
             const getUser=async()=>{
                 try{
-                    const res=await axios.get('/user/info',{headers:{Authorization:token}})
+                    const res=await axios.get('https://cinemate-g8ix.onrender.com/user/info',{headers:{Authorization:token}})
                     SetIsLogged(true)
                     res.data.role===1 ? SetIsAdmin(true):SetIsAdmin(false)
                     // console.log(res);
