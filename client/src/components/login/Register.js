@@ -17,7 +17,7 @@ const Register = () => {
   const registerSubmit=async(e)=>{
     e.preventDefault()
     try{
-      await axios.post('/user/register',{...user})
+      await axios.post('https://cinemate-g8ix.onrender.com/user/register',{...user})
       localStorage.setItem('firstRegister',true)
       window.location.href='/login'
     }catch(e){
