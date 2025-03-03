@@ -1,0 +1,82 @@
+/* Button Row Container */
+.row_btn {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  /* Common Button Styles */
+  .row_btn a {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  /* View Button */
+  #btn_view {
+    background-color: #111;
+    color: white;
+    border: 2px solid #111;
+  }
+  
+  #btn_view:hover {
+    background-color: white;
+    color:  #111;
+  }
+  
+  /* Wishlist Button */
+  #btn_list {
+    background-color: #c0392b;
+    color: white;
+    border: 2px solid #c0392b;
+  }
+  
+  #btn_list:hover {
+    background-color: white;
+    color: #c0392b;
+  }
+  
+  /* Admin Edit Button */
+  .row_btn a:first-child {
+    background-color: #ffcc00;
+    color: black;
+    border: 2px solid #ffcc00;
+  }
+  
+  .row_btn a:first-child:hover {
+    background-color: white;
+    color: #ffcc00;
+  }
+  
+  /* Admin Delete Button */
+  .row_btn a:last-child {
+    background-color: #dc3545;
+    color: white;
+    border: 2px solid #dc3545;
+  }
+  
+  .row_btn a:last-child:hover {
+    background-color: white;
+    color: #dc3545;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .row_btn {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .row_btn a {
+      width: 80%;
+      text-align: center;
+    }
+  }
+  
+  
