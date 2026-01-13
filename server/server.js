@@ -8,12 +8,16 @@ const cookieParser=require('cookie-parser')
 app.use(cookieParser())
 app.use(express.json())
 
-app.use(cors({
-    origin: "https://cine-mate-ten.vercel.app",
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,  
-}));
+//Cors for different origin
+// app.use(cors({
+//     origin: "https://cine-mate-ten.vercel.app",
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,  
+// }));
+
+app.use(cors());
+
 
 const PORT=process.env.PORT || 5000
 
