@@ -106,24 +106,80 @@ const proCtrl={
     chatBot:async(req,res)=>{
         try{
             const{message,movie,year}=req.body
-            const apiKey=process.env.GEMINI_API_KEY
-            const response = await axios.post(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-                {
-                    contents: [{ parts: [{ text: ` Answer very shortly this about ${movie,year}: ${message}` }] }]
+            // const apiKey=process.env.GEMINI_API_KEY
+            const apiKey = process.env.OPENROUTER_API_KEY;
+            // const response = await axios.post(
+            //     `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+            //     {
+            //         contents: [{ parts: [{ text: ` Answer very shortly this about ${movie,year}: ${message}` }] }]
 
-                },
-                { headers: { "Content-Type": "application/json" } }
-            )
-            if(response.data?.candidates?.length>0){
-                const aiResponse = response.data.candidates[0].content.parts[0].text;
-                res.json({aiResponse})
+            //     },
+            //     { headers: { "Content-Type": "application/json" } }
+            // )
+            const response = await axios.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            {
+            model: "mistralai/mistral-7b-instruct",
+            messages: [
+                {
+                role: "user",
+                content: `Answer very shortly about the movie "${movie}" (${year}): ${message}`
+                }
+            ]
+            },
+            {
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
             }
-            else {
-                throw new Error("No valid response from Gemini.")
-                console.log('errrrrrr');
-                ;
             }
+        );
+
+        // ---- VALIDATION BLOCK ----
+        if (!response.data) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        if (!response.data.choices) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        if (!Array.isArray(response.data.choices)) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        if (response.data.choices.length === 0) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        if (!response.data.choices[0].message) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        if (!response.data.choices[0].message.content) {
+            return res.json({ aiResponse: "AI connection failed." });
+        }
+
+        // ---- SAFE SUCCESS ----
+        const aiResponse = response.data.choices[0].message.content.trim();
+        res.json({ aiResponse });
+
+            // if(response.data?.candidates?.length>0){
+            //     const aiResponse = response.data.candidates[0].content.parts[0].text;
+            //     res.json({aiResponse})
+            // }
+            // else {
+            //     throw new Error("No valid response from Gemini.")
+            //     console.log('errrrrrr');
+            //     ;
+            // }
+
+            // if (Array.isArray(response.data) && response.data.length > 0) {
+            //     const aiResponse = response.data[0].generated_text;
+            //     res.json({ aiResponse });
+            // } else {
+            //     throw new Error("No valid response from HuggingFace.");
+            // }
         }
         catch(e){
             return res.status(500).json({msg:e.message})

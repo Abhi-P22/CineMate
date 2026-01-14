@@ -10,7 +10,8 @@ const Chatbot = ({ movieDetails: { movie, year } }) => {
         if (!message.trim()) return;
         setLoading(true);
         try {
-            const response = await axios.post('https://cinemate-g8ix.onrender.com/api/chatbot', { message, movie, year });
+            // const response = await axios.post('https://cinemate-g8ix.onrender.com/api/chatbot', { message, movie, year });
+            const response = await axios.post('/api/chatbot', { message, movie, year }); // for docker deployments
             const AiResponse = response.data.aiResponse;
             setResponses([...responses, { user: message, ai: AiResponse }]);
         } catch (error) {

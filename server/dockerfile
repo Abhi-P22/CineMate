@@ -1,5 +1,8 @@
 FROM node:18-alpine
 
+# Install CA certs for HTTPS
+RUN apk add --no-cache bash ca-certificates curl
+
 WORKDIR /app
 
 COPY package*.json ./
