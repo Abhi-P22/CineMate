@@ -1,0 +1,39 @@
+# Name of the WorkFlow
+name: Deployment
+
+# On which event the workflow should be triggered
+on:
+  push:
+    branches: ["main"] 
+
+# Define the jobs to be run
+jobs:
+# Job name
+  deploy:  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to feature branch
+        uses: actions/checkout@v3 
+
+      # - name: Run docker build
+      #   run: docker build ./ -t abhip22/cinemate:latest 
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
+
+      # - name: Push to DockerHub    
+      #   run: docker push abhip22/cinemate:latest
+
+      - name: Build images
+        run: docker-compose build
+
+      - name: Tag images
+        run: |
+          docker tag nginx-frontend abhip22/cinemate-client:latest
+          docker tag node-backend abhip22/cinemate-server:latest
+
+      - name: Push images
+        run: |
+          docker push abhip22/cinemate-client:latest
+          docker push abhip22/cinemate-server:latest

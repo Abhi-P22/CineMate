@@ -1,0 +1,49 @@
+# Name of the WorkFlow
+name: Integration
+
+# On which event the workflow should be triggered
+on:
+  push:
+    branches: ["main"] 
+  pull_request:
+    branches: ["main"]
+
+# Define the jobs to be run
+jobs:
+# Job name
+  build:  
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      # Define node versions to test against
+        node-version: [18.x,20.x, 22.x]
+
+    steps:
+      - name: Checkout to feature branch
+        uses: actions/checkout@v3 
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: 'npm'
+
+      - name: Install server deps
+        run: |
+          cd server
+          npm install
+
+      - name: Build server
+        run: |
+          cd server
+          npm run build
+
+      - name: Install client deps
+        run: |
+          cd client
+          npm install
+
+      - name: Build client
+        run: |
+          cd client
+          npm run build
