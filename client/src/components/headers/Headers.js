@@ -13,7 +13,7 @@ const Headers = () => {
     // console.log(state);
     const[isLogged,SetIsLogged]=state.UserApi.isLogged
     const[isAdmin,SetIsAdmin]=state.UserApi.isAdmin
-    const[cart,setCart]=state.UserApi.cart
+    const cart=state.UserApi.cart
 
     const adminRouter=()=>{
         return(
