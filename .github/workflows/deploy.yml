@@ -19,21 +19,28 @@ jobs:
       # - name: Run docker build
       #   run: docker build ./ -t abhip22/cinemate:latest 
 
-      - name: Login to DockerHub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
-
       # - name: Push to DockerHub    
       #   run: docker push abhip22/cinemate:latest
+
+      - name: Login to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
 
       - name: Build images
         run: docker-compose build
 
-      - name: Tag images
-        run: |
-          docker tag nginx-frontend abhip22/cinemate-client:latest
-          docker tag node-backend abhip22/cinemate-server:latest
-
       - name: Push images
-        run: |
-          docker push abhip22/cinemate-client:latest
-          docker push abhip22/cinemate-server:latest
+        # run: |
+        #   docker push abhip22/cinemate-client:latest
+        #   docker push abhip22/cinemate-server:latest
+        run: docker-compose push
+
+      # - name: Deploy to Server
+      #   uses: appleboy/ssh-action@v1
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ubuntu
+      #     key: ${{ secrets.EC2_SSH_KEY }}
+      #     script: |
+      #       cd /app
+      #       docker-compose pull
+      #       docker-compose up -d
