@@ -5,7 +5,7 @@ const Wishlist = () => {
   const state=useContext(GlobalState)
   const [cart,setCart]=state.UserApi.cart
 
-  if(cart.length==0) 
+  if(cart.length===0) 
   return <h2 style={{textAlign:'center',fontSize:'5rem', marginTop:'20px'}}>Wishlist is empty</h2>
   return (
     <div>
