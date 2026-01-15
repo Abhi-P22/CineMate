@@ -4,8 +4,8 @@ services:
   server:
     image: abhip22/cinemate-server
     build: ./server
-    env_file:
-      - ./server/.env
+    # env_file:
+    #   - ./server/.env
     restart: always
     expose:
       - "8080"
