@@ -46,7 +46,7 @@ const Headers = () => {
         </div>
         <div className='logo'>
             <h1>
-                <Link to='/'>{isAdmin ? 'Hi Boss':'CineMate'}</Link>
+                <Link to='/'>{isAdmin ? 'Hi Boss':'CineMatev1'}</Link>
                 <IoLogoClosedCaptioning />
             </h1>
         </div>
