@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { MdOutlineMenu } from "react-icons/md";
 import { IoLogoClosedCaptioning } from "react-icons/io";
 import { SiAwesomelists } from "react-icons/si";
