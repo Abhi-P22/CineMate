@@ -33,13 +33,16 @@ jobs:
         #   docker push abhip22/cinemate-client:latest
         #   docker push abhip22/cinemate-server:latest
         run: docker compose push
-      # - name: Deploy to Server
-      #   uses: appleboy/ssh-action@v1
-      #   with:
-      #     host: ${{ secrets.EC2_HOST }}
-      #     username: ubuntu
-      #     key: ${{ secrets.EC2_SSH_KEY }}
-      #     script: |
-      #       cd /app
-      #       docker-compose pull
-      #       docker-compose up -d
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /app
+            docker compose pull
+            docker compose up -d --remove-orphans
+
+
