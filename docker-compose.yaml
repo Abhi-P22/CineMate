@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   server:
+    image: abhip22/cinemate-server
     build: ./server
-    container_name: node-backend
     env_file:
       - ./server/.env
     restart: always
@@ -11,8 +11,8 @@ services:
       - "8080"
 
   client:
+    image: abhip22/cinemate-client
     build: ./client
-    container_name: nginx-frontend
     ports:
       - "80:80"
     depends_on:
