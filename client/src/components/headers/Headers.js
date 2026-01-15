@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { MdOutlineMenu } from "react-icons/md";
 import { IoLogoClosedCaptioning } from "react-icons/io";
 import { SiAwesomelists } from "react-icons/si";
@@ -13,7 +13,7 @@ const Headers = () => {
     // console.log(state);
     const[isLogged,SetIsLogged]=state.UserApi.isLogged
     const[isAdmin,SetIsAdmin]=state.UserApi.isAdmin
-    const[cart,setCart]=state.UserApi.cart
+    const cart=state.UserApi.cart
 
     const adminRouter=()=>{
         return(

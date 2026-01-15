@@ -1,11 +1,12 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { GlobalState } from '../../../GlobalState'
 
 const Wishlist = () => {
   const state=useContext(GlobalState)
-  const [cart,setCart]=state.UserApi.cart
+  // const [cart,setCart]=state.UserApi.cart
+  const cart=state.UserApi.cart
 
-  if(cart.length==0) 
+  if(cart.length===0) 
   return <h2 style={{textAlign:'center',fontSize:'5rem', marginTop:'20px'}}>Wishlist is empty</h2>
   return (
     <div>

@@ -36,10 +36,11 @@ jobs:
           cd server
           npm install
 
-      - name: Build server
-        run: |
-          cd server
-          npm run build
+      # see no need to build the server
+      # - name: Build server
+      #   run: |
+      #     cd server
+      #     npm run build
 
       - name: Install client deps
         run: |
