@@ -1,14 +1,11 @@
 CineMate | MERN Stack May 2024 - July 2024
 
-• Engineered a full-stack movie and TV show recommendation app with secure login, personalized access, and
-trending media display.
+• Built a full-stack movie and TV recommendation app with JWT authentication, personalized dashboards, trending
+content, and wishlist features.
 
-• Implemented JWT-based authentication and enforced RBAC for role-based authorization, featuring an admin panel
-for managing movies and TV shows.
+• Implemented RBAC with an admin panel using JWT-based role authorization for secure content management.
 
-• Integrated an AI-powered chatbot to provide instant assistance with movie-related queries.
+• Integrated an AI-powered chatbot for instant movie recommendations, summaries, and user assistance.
 
-• Designed a wishlist feature, enabling users to save favorite movies and access detailed summaries, genres, etc.
-
-• Developed a RESTful API to streamline CRUD operations for users, movies, and categories, enhancing data
-management and system efficiency.
+• Developed RESTful APIs and CI/CD pipelines using GitHub Actions to automate build, publish, and deployment
+with auto-deployments to AWS EC2.
